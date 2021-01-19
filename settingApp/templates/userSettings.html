@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Settings
+{% endblock title %}
+
+
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <div class="container">
+    
+      <div class="card p-5 mt-5">
+        <ul class="nav nav-pills">
+          <li class="{% if flag == 'form1' %} active  {% endif %}  "><a data-toggle="pill" class='btn btn-block'  href="#home">Personal</a></li>
+          <li class="{% if flag == '' %} active  {% endif %}  "><a data-toggle="pill" class='btn  btn-block'  href="#menu2">Password</a></li>
+          <li><a data-toggle="pill" class='btn btn-block'  href="#menu3">Security</a></li>
+        </ul>
+        <div class="tab-content">
+
+          <div id="home" class="tab-pane fade in {% if flag == 'form1' %} active {% else %}  {% endif %}  ">
+
+            <div class="card p-5 mt-5  shadow-md ">
+              <h3 class='text-center'>Update Personal Information</h3>
+              <hr>
+
+              <form method="POST" action="" id='form1'>
+                {% csrf_token %}
+                {% for field in updateForm  %}
+                  
+                <div class="form-group">
+                  {{field.label}}
+                  {{field}}
+
+                  {{error}}
+                <input type="hidden" name="form_type" value="form1">
+
+                  {% for error in field.errors %}
+                    {% if forloop.first %}
+                    <p style="color: red">{{ error }}</p>
+                      
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+                {% endfor %}
+
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+              </form>
+
+            </div>
+            
+          </div>
+          <div id="menu2" class="tab-pane fade {% if flag == '' %} active  {% endif %}  in ">
+            <div class="card p-5 mt-5  shadow-md ">
+              <h3 class='text-center'>Update Password</h3>
+              <hr>
+
+              <form method="POST" action="" id='form2'>
+
+
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="form2">
+
+                {% for field in updatePassForm %}
+                <div class="form-group">
+                    {{field.label}}
+                    {{field}}
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                {% endfor %}
+
+              
+                
+                <div class="text-center">
+                  <button type="password" placeholder="Confirm new password" class="btn btn-primary">Confirm Password</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+          <div id="menu3" class="tab-pane fade">
+
+            <div class="card p-5 mt-5">
+              <div class="text-center">
+                <h2>Note: You will not be able to use this account again.</h2>
+                <button class="btn btn-danger">Delete Account Permenently</button>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+        
+
+
+      </div>
+
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,76 @@
+{% extends "auth_base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block class %}
+    profile
+{% endblock class %}
+{% block content %}
+<style>
+    .userImage a{
+        color: white;
+    }
+</style>
+
+    <!-- WELCOME CONTENT -->
+    <section class="voltaireWel">
+        <div class="container-fluid">
+            <div class="voltaireArea">
+                <div class="voltairBOX voltaire-shadow-outset">
+                    <div class="row mx-0">
+                        <div class="col-md-12 px-0 coverImage">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-12 userPicture">
+                            <div class="userImage">
+                                
+                                {% if form.image %}
+                                    {{form.image}}                                  
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profileFill">
+                        <form class="profileForm" method="POST">
+                           
+                            {% csrf_token %}
+
+                            <div class="form-row">
+                            
+                            {% for field in form %}
+                            {% if field.label == 'Image' %}
+
+                                {% else %}
+                                    <div class="col-md-6 form-group">
+                                            {{field.label}}
+                                            {{field| add_class:"form-control"}}                                    
+                                    </div>
+                                {% endif %}
+
+                            {% endfor %}
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-action col-md-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        Next
+                                        <i class="fas fa-arrow-right ml-auto"></i>
+                                    </button>
+                                </div>
+                            </div> 
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END WELCOME CONTENT -->
+
+{% endblock content %}

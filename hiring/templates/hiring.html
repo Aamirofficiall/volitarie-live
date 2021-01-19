@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Hiring
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+<div class="home-content container">
+
+{% if  user.balance.is_valid %}        
+   
+    <!-- first file drop  -->
+    <div class="card w-100 mt-5  pl-5 pr-5 pb-4 home-content-card text-center  ">
+        <div class="card-body">
+            <h2 class="card-title">Drop your files</h2>
+    
+            <div class='text-center d-flex justify-content-center'>
+    
+                <div class="card w-75 mt-2 home-content-card-inner ">
+                    <div class="card-body">
+
+                    <form method="post" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                        <input type="file" name="file" id="file" class="inputfile hiring"/>
+                        <input type="text" name="userInput" id="file" class="inputfile hiring" style='display:none'/>
+
+                        <label for="file">
+                            <i class='fa fa-file ' style='font-size: 5rem;color:rgb(46, 175, 226);position: relative;right:161;' aria-hidden='true'></i><br>
+                            <strong>Choose a file</strong>
+                        </label>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <!-- second search bar-->
+    <div class='mt-5 search-bar-items'>
+        <h5>Enter Keywords</h5>
+        <form id="hiring-form" method='POST'>
+            {% csrf_token %}
+            <div class="input-group ">
+
+                <input type="text" class="form-control form-control-lg " id='searchData-input'  style='height: 60px !important;'
+                placeholder="Job Hiring ( java,python,..) " name='keyword'>
+
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-primary searchData ">
+                        <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+            </div>
+
+          </form>
+
+    </div>
+
+
+    <!-- third table -->
+    <div class="table-items table-responsive " >
+
+        <div class="table-items table-responsive">
+
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Company Name</th>
+                        <th>Location</th>
+                        <th>Action  <span id='FileLink'></span></th>
+                    </tr>
+                </thead>
+                <tbody id='csvTable'>
+
+ 
+    
+                </tbody>
+            </table>
+
+            <h3 class="text-center text-warning" id='noHiringRechord'>Nothing to show</h3>
+            <h3 class="text-center text-danger" id='noHiringRechordFound' style="display: none;">No Rechords Found</h3>
+    
+    
+        </div>
+        <div class="d-flex justify-content-center " style='height: 180px;'>
+            <div class="loader " id='loader'></div>
+        </div>
+
+
+
+
+ 
+    </div>
+
+    {% else %}
+    <p class='text-danger text-center alert-warning mt-5 p-3'>
+        You haven't choosen any package 
+        <a href="{% url 'package' %}"> &nbsp; Click here &nbsp; </a>
+        to choose one
+    </p>
+{% endif %}
+
+
+
+
+</div>
+
+
+
+{% endblock content %}
+

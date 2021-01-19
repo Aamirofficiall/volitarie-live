@@ -1,0 +1,96 @@
+{% extends "auth_base.html" %}
+{% load formcss %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+
+
+{% block title %}
+Login
+{% endblock title %}
+
+
+
+{% block class %}
+user-login
+{% endblock class %}
+
+
+
+
+{% block content %}
+    <!-- WELCOME CONTENT -->
+    <section class="voltaireWel">
+        <div class="container-fluid">
+            <div class="voltaireArea">
+                <div class="voltairBOX voltaire-shadow-outset">
+                    <div class="row">
+                        <div class="col-md-7 voltaireLogin">
+                            <div class="col-12 text-center mt-4 mb-5 voltaireLogo"><img src="{% static 'img/logo.svg' %}"
+                                    alt="Voltaire Welcome" /></div>
+                            <div class="loginBox">
+                                <h2 class="blockTitle">Login</h2>
+                                <form class="form-signin" method='POST'>
+                                    <div class="boxBorder">
+                                        {% csrf_token %}
+                                        {% for field in form  %}
+                                        <div class="row">
+                                            <div class="col-md-12 px-0">
+                                                {{ field|add_class:"form-control iconuser" }}
+                                                {% for error in field.errors %}
+                                                <p class="mt-2 ml-3 mb-2" style="color: red">{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% if form.errors %}
+                       
+
+                                        {% endif %}
+
+                                        <!-- <div class="row">
+                                            <div class="col-md-12 px-0">
+                                                <input type="password" id="inputPassword" class="form-control iconpass"
+                                                    placeholder="Password" required="">
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-check mr-md-auto mt-4 col-md-auto">
+                                            <label>
+                                                <input type="checkbox" value="i accpet"> Remember me</u>
+                                            </label>
+                                        </div>
+                                        <div class="forgotPassword ml-md-auto mt-md-3 col-md-auto"><u><a href="{% url 'password_reset'%}">Forgot
+                                                    Password</a></u></div>
+                                    </div>
+                                    <div class="form-action mt-4">
+                                        <button class="btn btn-primary d-inline-flex" type="submit">Login</button>
+                                    </div>
+                                </form>
+                                <div class="voltaireMedia mt-4">
+                                    <ul class="nav">
+                                        <li class="col-md d-flex align-items-center loginwith"><span>Or login
+                                                with</span></li>
+                                        <li class="ml-md-auto"><a href="#"><img src="{% static 'img/icon/iconGoogle.png' %}"
+                                                    alt="Google Play" /></a></li>
+                                        <li><a href="#"><img src="{% static 'img/icon/iconTwitter.png' %}" alt="Twitter" /></a></li>
+                                        <li><a href="#"><img src="{% static 'img/icon/iconlinkedin.png' %}" alt="Linkedin" /></a></li>
+                                    </ul>
+                                </div>
+                                <div class="voltairesighup col-12 d-flex justify-content-center mt-4 px-0">
+                                    <p>Don’t have an account? <u><a href="{% url 'register' %}">Sign up</a></u></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 align-items-center imagePolygon d-none d-md-flex"><img
+                                src="{% static 'img/welcome/loginBG.png' %}" alt="Login" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END WELCOME CONTENT -->
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="home-content container">
+
+    <!-- first file drop  -->
+    <div class="card w-100 mt-5  pl-5 pr-5 pb-4 home-content-card text-center  ">
+        <div class="card-body">
+            <h2 class="card-title">Drop your files</h2>
+
+            <div class='text-center d-flex justify-content-center'>
+
+                <div class="card w-75 mt-2 home-content-card-inner ">
+                    <div class="card-body">
+                        <i class="fa fa-file " style='font-size: 5rem;color:rgb(46, 175, 226);' aria-hidden="true"></i>
+                        <br>
+                        Drop or drop your files here
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- second search bar-->
+    <div class='mt-5 search-bar-items'>
+        <h5>Enter Keywords</h5>
+        <input type="text" class="form-control form-control-lg" style='height: 60px !important;'
+            placeholder="Job Hiring, Technology etc">
+    </div>
+
+    <!-- third table -->
+    <div class="table-items table-responsive">
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Jobs</th>
+                    <th>Notes</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='mb-3'>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td><i class="far fa-trash-alt text-danger" style='font-size: 20px;'></i></td>
+                </tr>
+                <tr class='mb-3'>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td><i class="far fa-trash-alt text-danger" style='font-size: 20px;'></i></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+
+{% endblock content %}

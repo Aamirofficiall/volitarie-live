@@ -1,0 +1,131 @@
+{% extends "auth_base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Register
+{% endblock title %}
+{% block class %}
+user-login
+{% endblock class %}
+{% block content %}
+
+    <!-- WELCOME CONTENT -->
+    <section class="voltaireWel">
+        <div class="container-fluid">
+            <div class="voltaireArea">
+                <div class="voltairBOX voltaire-shadow-outset">
+                    <div class="row">
+                        <div class="col-md-7 voltaireLogin">
+                            <div class="col-12 text-center mt-4 mb-5 voltaireLogo"><img src=" {% static 'img/logo.svg' %}"
+                                    alt="Voltaire Welcome" /></div>
+                            <div class="loginBox signupBox">
+                                <h2 class="blockTitle">Sign Up</h2>
+                                <form class="form-signup" method='POST'>
+                                    {% csrf_token %}
+                                    <div class="boxBorder">
+                                        <!-- {% for field in form %}
+                                        <div class="row">
+                                            <div class="col-md-12 px-0">
+                                            {% if  field.label_tag != 'Password' or field.label_tag != 'Password confirmation' %} 
+                                              
+                                            {{ field | add_class:"form-control"}}
+
+                                            {% for error in field.errors %}
+                                            <p style="color: red" class='ml-1'>{{ error }}</p>
+
+                                            {% endfor %}
+                                            {% endif %}
+                                    
+                                        </div>
+                                    </div> -->
+                                        <!-- {% endfor %} -->
+
+                                        <div class="row">
+                                            <div class="col-md-6 px-0">
+                                                <input type="text" class="form-control" name='firstName' placeholder='First Name'>                                                
+                                            </div>
+                                            <div class="col-md-6 px-0">
+                                                <input type="text" class="form-control" name='lastName' placeholder='Last Name'>
+                                            </div>
+                                        </div>                                        
+
+                                       <div class="row">
+                                            <div class="col-md-12 px-0">
+                                                {{ form.email | add_class:"form-control"}}
+                                                {% for error in form.email.errors %}
+                                                <p style="color: red">{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                                                    
+                                        </div> 
+
+                                                 
+
+                                        <div class="row">
+                                            <div class="col-md-6 px-0">
+                                                {{ form.password1 | add_class:"form-control"}}
+                                                {% for error in form.password1.errors %}
+                                                <p style="color: red">{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="col-md-6 px-0">
+                                                {{ form.password2 | add_class:"form-control"}}
+                                                {% for error in form.password2.errors %}
+                                                <p style="color: red">{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="col-md-12 px-0">
+                                                <input type="text" class="form-control" name='companyName' placeholder='Company Name'>                                                
+                                            </div>
+                                            <div class="col-md-12 px-0">
+                                                <input type="text" class="form-control" name='companyEmail' placeholder='Company Email'>
+                                            </div>
+                                        </div> -->
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-check mr-md-auto mt-4 col-md-auto">
+                                            <div class="checkbox">
+                                                <input id="terms" name="checkbox" type="checkbox">
+                                                <label for="terms" class="checkbox-label">
+                                                    <input type="checkbox" value="i accpet"> i accpet <u><a href="#">Terms &
+                                                            Conditions</a></u>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="form-action mt-4">
+                                        <button class="btn btn-primary d-inline-flex" type="submit">Sign up</button>
+                                    </div>
+                                </form>
+                                <div class="voltaireMedia mt-4">
+                                    <ul class="nav">
+                                        <li class="col-md d-flex align-items-center loginwith"><span>Or login
+                                                with</span></li>
+                                        <li class="ml-md-auto"><a href="#"><img src=" {% static 'img/icon/iconGoogle.png' %}"
+                                                    alt="Google Play" /></a></li>
+                                        <li><a href="#"><img src=" {% static 'img/icon/iconTwitter.png' %}" alt="Twitter" /></a></li>
+                                        <li><a href="#"><img src=" {% static 'img/icon/iconlinkedin.png' %}" alt="Linkedin" /></a></li>
+                                    </ul>
+                                </div>
+                                <div class="voltairesighup col-12 d-flex justify-content-center mt-4 px-0">
+                                    <p>Already have an account? <u><a href="{% url 'login' %}">Login</a></u></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 align-items-center imagePolygon d-none d-md-flex"><img
+                                src=" {% static 'img/welcome/loginBG.png' %}" alt="Login" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END WELCOME CONTENT -->
+
+
+{% endblock content %}

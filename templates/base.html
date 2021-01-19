@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    <title>
+        {% block title %}
+
+        {% endblock title %}
+        | Voltaire
+    </title>
+
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf'" crossorigin="anonymous">
+    <link href="{% static 'vendor/owl/assets/owl.carousel.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vendor/animate-css/animate.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/voltaire.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</head>
+
+
+<style>
+
+</style>
+
+<body>
+
+
+
+        <div class="sidenav" style='border-right:2px solid white' >
+            <div class='sidenav-logo'>
+                <a href="{% url 'home' %}" style='background-color: rgb(46, 175, 226) !important; padding: 0px !important;'>
+                    <img src="{% static 'img/logo.svg' %}" alt="">
+                </a>
+            </div>
+
+
+            <div class="sidenav-links">
+                <a href="{% url 'profile' %}">
+                    <i class="fas fa-user ml-2" style='font-size: 1rem;color:rgb(224, 224, 224) !important'></i>
+                    <span class='ml-2'>
+                   
+                        Profile
+                    </span>
+                </a>
+            </div>        
+            <div class="sidenav-links">
+                <a href="">
+                    <img src="{% static 'img/icon/01.png' %}" width="30px" alt="">
+                    <span>
+                        Integration
+                    </span>
+                </a>
+            </div>
+            <div class="sidenav-links">
+                <a href="">
+                    <img src="{% static 'img/icon/02.png' %}" width="30px" alt="">
+                    <span>
+                        Plan 10/200
+                    </span>
+                </a>
+            </div>
+            <div class="sidenav-links">
+                <a href="{% url 'package' %}">
+                    <img src="{% static 'img/icon/03.png' %}" width="30px" alt="">
+                    <span>
+                        Billing
+                    </span>
+                </a>
+            </div>
+            <div class="sidenav-links">
+                <a href="">
+                    <img src="{% static 'img/icon/04.png' %}" width="30px" alt="">
+                    <span>
+                        Upgrade
+                    </span>
+                </a>
+            </div>
+            <div class="sidenav-links">
+                <a href="{% url 'linkdin' %}">
+                    <img src="{% static 'img/icon/05.png' %}" width="30px" alt="">
+                    <span>
+                        Personaliztion
+                    </span>
+                </a>
+            </div>
+            <div class="sidenav-links">
+                <a href="{% url 'competition' %}">
+                    <img src="{% static 'img/icon/06.png' %}" width="30px" alt="">
+                    <span>
+                        Competition
+                    </span>
+                </a>
+            </div>
+            <div class="sidenav-links">
+                <a href="{% url 'hiring' %}">
+                    <img src="{% static 'img/icon/07.png' %}" width="30px" alt="">
+                    <span>
+                        Hiring
+                    </span>
+                </a>
+            </div>
+            <div class="sidenav-links">
+                <a href="{% url 'setting' %}">
+                    <img src="{% static 'img/icon/08.png' %}" width="30px" alt="">
+                    <span>
+                        Setting
+                    </span>
+                </a>
+            </div>
+
+            <div class="sidenav-links">
+                <a href="{% url 'logout'%}">
+                    <img src="{% static 'img/icon/09.png' %}" width="30px" alt="">
+                    <span>
+                        Logout
+                    </span>
+                </a>
+            </div>
+        
+        </div>
+
+        {% if user.is_authenticated %}
+          
+            <nav class="navbar  text-light navbar-expand-sm" style='height: 40px;background-color: rgb(46, 175, 226);'>
+                <div style='position: absolute;right: 30px;'>
+                    <span style='font-weight: bold;'> Wellcome</span>
+                     @{{user.username}}
+                </div>
+              </nav>
+        {% endif %}
+
+
+        <div class="main  ">
+
+
+            
+            {% block content %}
+            
+            {% endblock content %}
+        </div>
+
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"
+        type="text/javascript"></script>
+    <script src="{% static 'vendor/owl/owl.carousel.min.js' %}" type="text/javascript"></script>
+
+
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'vendor/jquery-scrollify/jquery.scrollify.js' %}" type="text/javascript"></script>
+
+    <script src="{% static 'js/voltaire.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/custom.js' %}" type="text/javascript"></script>
+
+</body>
+
+</html>

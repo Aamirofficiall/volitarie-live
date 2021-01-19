@@ -1,0 +1,67 @@
+{% extends "auth_base.html" %}
+{% load static %}
+
+
+{% block title %}
+Connect
+{% endblock title %}
+
+{% block class %}
+connect
+{% endblock class %}
+
+{% block content %}
+
+    <!-- WELCOME CONTENT -->
+    <section class="voltaireWel">
+        <div class="container-fluid">
+            <div class="voltaireArea">
+                <div class="voltairBOX voltaire-shadow-outset">
+                    <div class="voltairWriting col-md-10 position-static mx-auto">
+                        <div class="writingBox connectBox">
+                            <div class="pageHeading text-center text-uppercase mb-3 mb-md-5">
+                                <h2>Connect to your favourite apps </h2>
+                            </div>
+                            <form>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 d-inline-flex boxText">
+                                        <div class="btn-text"><span><img src="{% static 'img/welcome/google.png' %}" />Google</span>
+                                        </div>
+                                        <a href="#" class="btn btn-alt-clear">Connect</a>
+                                    </div>
+                                    <div class="col-md-4 d-inline-flex boxText">
+                                        <div class="btn-text"><span><img src="{% static 'img/welcome/twitter.png' %}" />Twitter</span>
+                                        </div>
+                                        <a href="#" class="btn btn-alt-clear">Connect</a>
+                                    </div>
+                                    <div class="col-md-4 d-inline-flex boxText">
+                                        <div class="btn-text"><span><img src="{% static 'img/welcome/linkedin.png' %}" />Linkedin</span>
+                                        </div>
+                                        <a href="#" class="btn btn-alt-clear">Connect</a>
+                                    </div>
+                                    <div class="col-md-4 d-inline-flex boxText">
+                                        <div href="#" class="btn-text btn-active"><span><img
+                                                    src="{% static 'img/welcome/facebook_1.png' %}" />Facebook</span></div>
+                                        <a href="#" class="btn btn-alt-clear">Connect</a>
+                                    </div>
+                                    <div class="col-md-4 d-inline-flex boxText">
+                                        <div href="#" class="btn-text btn-active"><span><img
+                                                    src="{% static 'img/welcome/crm.png' %}" />Crm</span></div>
+                                        <a href="#" class="btn btn-alt-clear">Connect</a>
+                                    </div>
+                                </div>
+                                <div class="form-action">
+                                    <button type="submit" class="btn btn-primary">Next<i
+                                            class="fas fa-arrow-right ml-auto"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END WELCOME CONTENT -->
+
+
+{% endblock content %}

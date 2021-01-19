@@ -1,0 +1,235 @@
+
+.file-area {
+  width: 100%;
+  position: relative;
+}
+  input[type=file] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+ 
+    .success {
+      display: none;
+    }
+  
+  
+ 
+  input[type=file]:focus + .file-dummy {
+    outline: 2px solid rgba(255,255,255,0.5);
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  
+input[type=file]:valid + .file-dummy {
+    border-color: rgba(0,255,0,0.4);
+    background-color: rgba(0,255,0,0.3);
+}
+.success {
+    display: inline-block;
+}
+.default {
+    display: none;
+}
+
+
+
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+
+
+
+.inputfile+label * {
+    pointer-events: none;
+}
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(46, 175, 226);
+    overflow-x: hidden;
+}
+
+.sidenav-logo {
+    padding: 40px;
+}
+
+.sidenav-logo img {
+
+    width: 150px;
+}
+
+.sidenav a {
+    text-decoration: none;
+    display: block;
+}
+
+.sidenav-links {
+
+    color: rgb(139, 139, 139);
+}
+
+.sidenav-links span {
+    padding-left: 40px;
+}
+
+.sidenav a {
+    padding: 10px 8px 6px 36px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: rgb(25, 95, 138);
+
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+
+    background-color: rgb(144, 204, 228);
+}
+
+.main {
+    margin-left: 300px;
+    padding: 0px 10px 0px 10px;
+    height: 100%;
+
+}
+
+body {
+    background-color: rgb(238, 236, 236) !important;
+}
+
+.home-content-card {
+    border-radius: 20px;
+}
+
+.home-content-card-inner {
+    border: 5px dashed rgb(144, 204, 228);
+    background-color: rgb(242, 248, 250);
+}
+
+.search-bar-items input {
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+
+
+table {
+    margin-top: 50px;
+    border-collapse: separate;
+    border-spacing: 0 20px !important;
+
+}
+
+th {
+    background-color: #d4d4d4;
+    color: black !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+
+}
+
+tr {
+    border-radius: 10px;
+
+}
+
+th,
+td {
+    width: 20%;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+tbody tr {
+    background-color: white;
+}
+
+th:first-child,
+td:first-child {
+    border-left-style: solid;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+th:last-child,
+td:last-child {
+    border-right-style: solid;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid rgb(46, 175, 226);
+    border-bottom: 16px solid rgb(46, 175, 226);
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    display: none;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  has-search .form-control-hiring {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.searchData{
+        height: 60px !important;
+        margin-top: 10px;
+        border-radius: 0px!important;
+        min-width: 40px;
+        border-top-right-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;;
+}
