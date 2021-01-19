@@ -1,3 +1,1 @@
-web: gunicorn volitarie.wsgi:application --log-file - --log-level debug
-python manage.py collectstatic --noinput
-manage.py migrate
+web: gunicorn voltaire.wsgi --log-file -
