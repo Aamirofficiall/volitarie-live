@@ -1,0 +1,1 @@
+web: gunicorn volitarie.wsgi --log-file -
