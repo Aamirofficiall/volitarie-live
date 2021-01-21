@@ -61,15 +61,15 @@ def getLinkdinData(request):
 
     
             # keyword.pop(0)
-            try:
-                results={}
-                data=[]
-                for profile_url in keyword:
-                    print(profile_url)
-                    goodies = constructEmailTemplate(email, password,profile_url)   
-                    data.append(goodies)
-            except: 
-                results={}
+            # try:
+            results={}
+            data=[]
+            for profile_url in keyword:
+                print(profile_url)
+                goodies = constructEmailTemplate(email, password,profile_url)   
+                data.append(goodies)
+            # except: 
+            #     results={}
             #####################################################################################################
             # ########################################### Balance Part ##########################################
             #####################################################################################################

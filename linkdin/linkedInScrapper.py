@@ -9,7 +9,10 @@ from GoogleNews import GoogleNews
 from newspaper import Article
 import pandas as pd
 from newspaper import fulltext
+import os
 
+
+PATH = os.path.realpath('finalized_model.sav')
 
 def get_html(email, password, profile):
     client = requests.Session()
@@ -37,7 +40,12 @@ def get_html(email, password, profile):
     html = client.get(profile).content
     soup = BeautifulSoup(html , "html.parser")
     
-    return soup
+    
+    posts_urls = profile+'/detail/recent-activity/posts/'
+    html = client.get(posts_urls).content #opens ASPIRING_DATA_SCIENTIEST
+    post_soup = BeautifulSoup(html , "html.parser")
+    
+    return soup, post_soup
 
 
 
@@ -154,7 +162,7 @@ def constructWeather(city):
         return random.choice(weather_0).replace("<place>", city)
 
     elif 'fog' in weatherdata['weather_description'] or 'smoke' in weatherdata['weather_description']:
-        fog_smoke = ["Heard about the dense smog/ fog in <place> hope you're driving safely.", 
+        fog_smoke = ["Heard about the dense smog/ fog in <place>, hope you're driving safely.", 
                      "hope your safe from the dense fog in <place>"]
         return random.choice(fog_smoke).replace("<place>", city)
 
@@ -248,16 +256,63 @@ def get_news(company):
     return title, summary
 
 
+import pickle
+
+def getIndustry(JobTitle):
+
+    filename = PATH
+    sgd = pickle.load(open(filename, 'rb'))
+    return sgd.predict([JobTitle])[0]
+
+def postAndActivities(post_soup):
+
+    link=''
+    title=''
+    summary = ''
+    codes = post_soup.find_all('code')
+
+    for code in codes:
+        try:
+            for data in code.children:
+                data = data
+            res = json.loads(data[3:len(data)-1])
+            for ele in res['included']:
+                try:
+                    link = ele['permaLink']
+                    title = ele['title']
+                    
+                    article = Article(link)
+                    article.download()
+                    article.parse()
+                    article.nlp()
+                    
+                    summary = article.summary
+
+                    return link, title, summary
+                except:
+                    pass
+        except:
+            pass
+    return '','',''
+    
+
 def constructEmailTemplate(email, password, profile_url):
 
-    soup = get_html(email, password, profile_url)
+    soup, post_soup = get_html(email, password, profile_url)
     
     school, position, company, location, city, name = get_info(soup)
     
-    goodies = {'name':name, 'profile_url':profile_url, 'school':school, 'job_position': position, 'company': company, 'location':location, 'city':city}
+    post_link, post_title, post_summary = postAndActivities(post_soup)
+    
+    goodies = {'name':name, 'profile_url':profile_url, 'school':school, 'job_position': position, 'company': company, 'industry':getIndustry(position), 'location':city}
     
     goodies['weather'] = constructWeather(city)
-    goodies['university'] = constructUniversity(school)
+    goodies['school'] = constructUniversity(school)
+    
+    goodies['intro_title_to_post'] = post_title
+    goodies['intro_summary_to_post'] = post_summary
+    goodies['intro_link_to_post'] = post_link
+
     goodies['news'] = get_news(company)
     title, summary = get_news(company)
     goodies['news title'] = title
@@ -267,5 +322,8 @@ def constructEmailTemplate(email, password, profile_url):
     
     
     return goodies
+
+
+
 
 
