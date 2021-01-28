@@ -94,6 +94,12 @@ function convertWholeDataToCSVlinkdIn(data){
         "location",
         "city",
         "weather",
+        "intro_title_to_post",
+        "intro_summary_to_post",
+        "intro_link_to_post",
+        "news",
+        "news title",
+        "summary",
         "university",
         "news",
         "summay",
@@ -110,6 +116,9 @@ function convertWholeDataToCSVlinkdIn(data){
         item.location,
         item.city,
         item.weather,
+        item.intro_title_to_post,
+        item.intro_summary_to_post,
+        item.intro_link_to_post,
         item.university,
         item.news,
         item.summay,
@@ -325,17 +334,25 @@ $(document).ready(function () {
             contentType: false,
             enctype: 'multipart/form-data',
             success: function (data) {
+                console.log(data)
+                // document.getElementById('loader').style.display = "none";
                 
-                document.getElementById('loader').style.display = "none";
-                
-                var results=''
-                var header = "name,profile_url,school,job_position,company,location,city,weather,university,news,summay,CTA,signature_outro"
+                // var results=''
+                // var header = "name,profile_url,school,job_position,company,location,city,weather,university,news,summay,CTA,signature_outro"
                 // results = results+header+'\n'
 
-                convertWholeDataToCSVlinkdIn(data)
+                // convertWholeDataToCSVlinkdIn(data)
 
+                var blob = new Blob([data],{type: 'text/csv;charset=utf-8;'});
+                var url = URL.createObjectURL(blob);
+            
+                var downloadTag=`<a href='${url}' download='data.csv' class="btn btn-primary " style='border-radius: 10px !important; min-width: 120px;'>
+                Download <i class="fas fa-download  "></i>
+                </a>`
 
-    
+                document.getElementById('launch-button').innerHTML=''
+                $('#launch-button').append(downloadTag)
+                
                 
             }
             ,

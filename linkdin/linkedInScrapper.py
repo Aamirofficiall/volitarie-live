@@ -54,7 +54,7 @@ def get_info(soup):
     codes = soup.find_all('code')
     
     schools = {}
-    position = {}
+    position = ''
     company = ''
     location = {}
     city = ''
@@ -262,6 +262,7 @@ def getIndustry(JobTitle):
 
     filename = PATH
     sgd = pickle.load(open(filename, 'rb'))
+    print('JobTitle:', JobTitle)
     return sgd.predict([JobTitle])[0]
 
 def postAndActivities(post_soup):
@@ -303,20 +304,35 @@ def constructEmailTemplate(email, password, profile_url):
     school, position, company, location, city, name = get_info(soup)
     
     post_link, post_title, post_summary = postAndActivities(post_soup)
+
+    industry = ''
+
+    if position=='':
+        industry = ''
+    else:
+        industry = getIndustry(position)
     
-    goodies = {'name':name, 'profile_url':profile_url, 'school':school, 'job_position': position, 'company': company, 'industry':getIndustry(position), 'location':city}
+    goodies = {'name':name, 'profile_url':profile_url, 'school_name':max(school.items(), key=operator.itemgetter(1))[0], 'job_position': position, 'company': company, 'industry':industry, 'location':city}
     
     goodies['weather'] = constructWeather(city)
-    goodies['school'] = constructUniversity(school)
+    goodies['school_goodie'] = constructUniversity(school)
     
     goodies['intro_title_to_post'] = post_title
     goodies['intro_summary_to_post'] = post_summary
     goodies['intro_link_to_post'] = post_link
 
-    goodies['news'] = get_news(company)
+    # goodies['news'] = get_news(company)
     title, summary = get_news(company)
-    goodies['news title'] = title
-    goodies['summay'] = summary
+    if len(title) > 0:
+        goodies['news title'] = title[0]
+    else:
+        goodies['news title'] = ''
+    
+    if len(summary) > 0:
+        goodies['news summary'] = summary[0]
+    else:
+        goodies['news summary'] = ''
+
     goodies['CTA'] = constructCTA()
     goodies['signature_outro'] = constructsignature()
     

@@ -7,7 +7,7 @@ from django.shortcuts import render
 from payment.models import * 
 import csv
 import io
-
+import json
 
 
 email = 'ahsan44411@gmail.com'
@@ -68,6 +68,7 @@ def getLinkdinData(request):
                 print(profile_url)
                 goodies = constructEmailTemplate(email, password,profile_url)   
                 data.append(goodies)
+
             # except: 
             #     results={}
             #####################################################################################################
@@ -80,12 +81,44 @@ def getLinkdinData(request):
                 Balance.objects.filter(user=request.user).update(is_valid=False)
             Balance.objects.filter(user=request.user).update(remaining_balance=pre_amount-amount)
 
-            response = HttpResponse(content_type='text/json')
+
+            # for a in data:
+            #     for i,k in a.items():
+            #         print(a[i])
+            #         a[i]= a[i].replace(',','')
+            #         a[i]= a[i].replace('.','')    
+
+            response = HttpResponse(content_type='text/csv')
             response['results']=results
             results['data']=data
-            print(results)
 
-            return JsonResponse(results)
+            csv_columns = ['name','profile_url','school_name','job_position','company','industry','location','weather','school_goodie',
+            'intro_title_to_post','intro_summary_to_post','intro_link_to_post',
+            'news title', 'news summary', 'CTA', 'signature_outro']
+
+            with open('dict.csv', 'w', encoding="utf-8") as csv_file:  
+                writer = csv.DictWriter(csv_file, fieldnames=csv_columns)
+                writer.writeheader()
+                for goodies in data:
+                    writer.writerow(goodies)
+
+            # output_file = open('dict.csv', 'w', encoding='utf-8')
+            # for dic in results:
+            # json.dump(data, output_file) 
+            # output_file.write("\n")
+
+            # print(results)
+            with open('dict.csv', encoding="utf-8") as myfile:
+                response = HttpResponse(myfile, content_type='text/csv')
+                response['Content-Disposition'] = 'attachment; filename=dict.csv'
+                return response
+            # return JsonResponse(results)
+
+
+# def index(request):
+#     response = HttpResponse(content_type="text/csv")
+#     response["Content-Disposition"] = "attachment;filename='output.csv'"
+
        
         else:
             response = HttpResponse(content_type='text/json')
